@@ -16,7 +16,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
         primaryStage.setTitle("打印伺服器");
         primaryStage.setScene(new Scene(root, 600, 400));
-        primaryStage.show();
+//        primaryStage.show();
 
         primaryStage.setOnCloseRequest(event -> {
             MySystemTray.getInstance().hide(primaryStage);
@@ -44,7 +44,7 @@ public class Main extends Application {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         launch(args);
     }
 }

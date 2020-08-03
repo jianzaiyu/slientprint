@@ -37,9 +37,13 @@ public class PrintController {
             config.setDuplex(Boolean.parseBoolean(request.getParameter().get("duplex")));
             config.setPrinter(request.getParameter().get("printer"));
             config.setPaperSize(request.getParameter().get("paperSize"));
-//            config.setUrls(request.getOrigin(), request.getParameter().get("url"));
             config.setUrls(request.getParameter().get("url"));
             config.setMultipartFiles(request.getMultiPartFiles());
+//            config.setCopies(1);
+//            config.setDuplex(false);
+//            config.setPrinter(null);
+//            config.setPaperSize("A5");
+//            config.setMultipartFiles(request.getMultiPartFiles());
             return thePrintService.printPdf(config);
         } catch (Exception e) {
             e.printStackTrace();

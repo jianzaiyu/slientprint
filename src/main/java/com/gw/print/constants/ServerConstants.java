@@ -17,7 +17,7 @@ public class ServerConstants {
      */
     public static boolean PRINT_SWITCH = true;
     /**
-     * 打印开关
+     * 远程模式
      */
-    public static boolean REMOTE_MODE = false;
+    public static boolean REMOTE_MODE = true;
 }

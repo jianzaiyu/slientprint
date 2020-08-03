@@ -17,9 +17,9 @@
       <Pane prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <JFXToggleButton fx:id="serverSwitch" onMouseClicked="#onSwitch" prefHeight="60.0" prefWidth="162.0" selected="true" text="打印开关" />
-            <JFXCheckBox fx:id="remoteMode" layoutX="277.0" layoutY="21.0" onMouseClicked="#onRemoteChecked" style="-jfx-checked-color: rgb(106,204,194);" text="远程模式" />
+            <JFXCheckBox fx:id="remoteMode" layoutX="277.0" layoutY="21.0" onMouseClicked="#onRemoteChecked" style="-jfx-checked-color: rgb(106,204,194);" text="远程模式" visible="false"/>
             <JFXButton fx:id="clearConsole" layoutX="546.0" layoutY="19.0" onMouseClicked="#onClearConsole" style="-jfx-button-type: RAISED; -fx-background-color: rgb(106,204,194); -fx-text-fill: white;" text="清空" />
-            <JFXCheckBox fx:id="bootstrap" layoutX="163.0" layoutY="21.0" style="-jfx-checked-color: rgb(106,204,194);" text="开机自启" />
+            <JFXCheckBox fx:id="bootstrap" layoutX="163.0" layoutY="21.0" style="-jfx-checked-color: rgb(106,204,194);" text="开机自启" visible="false"/>
          </children>
       </Pane>
    </top>

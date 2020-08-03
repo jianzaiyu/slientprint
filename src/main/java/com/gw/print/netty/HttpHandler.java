@@ -39,7 +39,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
         heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_CREDENTIALS, true);
 //        heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_METHODS, "GET,POST,OPTION");
-//        heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_HEADERS,"api-version");
+//        heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_HEADERS,"api-version,Authorization");
         heads.add(HttpHeaderNames.ACCESS_CONTROL_MAX_AGE,6);
         // 响应给客户端
         ctx.write(response);
