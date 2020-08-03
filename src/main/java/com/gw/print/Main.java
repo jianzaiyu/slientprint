@@ -1,8 +1,8 @@
 package com.gw.print;
 
+import com.gw.print.component.MySystemTray;
 import com.gw.print.netty.HttpServer;
 import com.gw.print.support.ConsolePrinter;
-import com.gw.print.component.MySystemTray;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

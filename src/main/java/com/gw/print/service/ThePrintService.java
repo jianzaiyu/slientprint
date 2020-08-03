@@ -93,7 +93,8 @@ public class ThePrintService {
         if (printer.getAttribute(PrinterIsAcceptingJobs.class) == PrinterIsAcceptingJobs.NOT_ACCEPTING_JOBS) {
             throw new PrinterException("打印机不可用");
         }
-        ConsolePrinter.info("选择使用打印机:" + printer.getName());
+        ConsolePrinter.info("选择使用打印机: " + printer.getName());
+        ConsolePrinter.info("纸张大小: " + userConfigs.getPaperSize());
         LinkedBlockingQueue<byte[]> documentsByte = new LinkedBlockingQueue<>();
 
         PrinterJob printerJob = PrinterJob.getPrinterJob();
@@ -121,6 +122,7 @@ public class ThePrintService {
 
 
     private void print(PrinterJob printerJob, byte[] fileByte, PrintRequestAttributeSet attr) {
+        ConsolePrinter.info("文件长度: "+fileByte.length);
         try (PDDocument document = PDDocument.load(fileByte)) {
             printerJob.setPageable(new PDFPageable(document));
             printerJob.print(attr);
