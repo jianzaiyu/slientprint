@@ -3,52 +3,57 @@ package com.gw.print.controller;
 
 import com.gw.print.model.HttpRequest;
 import com.gw.print.model.PrintConfigs;
-import com.gw.print.service.ThePrintService;
+import com.gw.print.model.ZebraConfigs;
+import com.gw.print.service.BasePrintService;
+import com.gw.print.service.CommonPrintService;
+import com.gw.print.service.ZebraPrintService;
 import com.gw.print.support.ConsolePrinter;
-
-import java.util.List;
 
 /**
  * 控制Controller
  */
 public class PrintController {
-    private static PrintController selfInstance = new PrintController();
-    private static ThePrintService thePrintService = new ThePrintService();
-
-    private PrintController() {
-    }
-
-    public static PrintController getInstance() {
-        return selfInstance;
-    }
+    private BasePrintService basePrintService = new BasePrintService();
+    private CommonPrintService commonPrintService = new CommonPrintService();
+    private ZebraPrintService zebraPrintService = new ZebraPrintService();
 
     public String getPrinters(HttpRequest request) {
-        return thePrintService.getPrinters();
+        return basePrintService.getPrinters();
     }
 
     public String getDefaultPrinter(HttpRequest request) {
-        return thePrintService.getDefaultPrinter();
+        return basePrintService.getDefaultPrinter();
     }
 
     public String printPdf(HttpRequest request) {
         try {
             PrintConfigs config = new PrintConfigs();
-            config.setCopies(Integer.parseInt(request.getParameter().get("copies")));
-            config.setDuplex(Boolean.parseBoolean(request.getParameter().get("duplex")));
+            config.setCopies(request.getParameter().get("copies"));
+            config.setDuplex(request.getParameter().get("duplex"));
             config.setPrinter(request.getParameter().get("printer"));
             config.setPaperSize(request.getParameter().get("paperSize"));
             config.setUrls(request.getParameter().get("url"));
             config.setMultipartFiles(request.getMultiPartFiles());
-//            config.setCopies(1);
-//            config.setDuplex(false);
-//            config.setPrinter(null);
-//            config.setPaperSize("A5");
-//            config.setMultipartFiles(request.getMultiPartFiles());
-            return thePrintService.printPdf(config);
+            return commonPrintService.printPdf(config);
         } catch (Exception e) {
             e.printStackTrace();
             ConsolePrinter.info(e.getMessage());
-            return "{\"result\":\"failure\"}";
         }
+        return "{\"result\":\"failure\"}";
+    }
+
+    public String printZebra(HttpRequest request) {
+        try {
+            ZebraConfigs zebraConfigs = new ZebraConfigs();
+            zebraConfigs.setZebraCode(request.getParameter().get("zebraCode"));
+            zebraConfigs.setZebraPrinterIp(request.getParameter().get("zebraPrinterIp"));
+            zebraConfigs.setZebraPrinterPort(request.getParameter().get("zebraPrinterPort"));
+            zebraConfigs.setZebraPrinterName(request.getParameter().get("zebraPrinterName"));
+            return zebraPrintService.printZebra(zebraConfigs);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ConsolePrinter.info(e.getMessage());
+        }
+        return "{\"result\":\"failure\"}";
     }
 }

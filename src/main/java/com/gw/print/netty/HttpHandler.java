@@ -36,10 +36,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         heads.add(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
         // 允许跨域访问
         heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
-
         heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_CREDENTIALS, true);
-//        heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_METHODS, "GET,POST,OPTION");
-//        heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_HEADERS,"api-version,Authorization");
         heads.add(HttpHeaderNames.ACCESS_CONTROL_MAX_AGE,6);
         // 响应给客户端
         ctx.write(response);
@@ -85,7 +82,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
                     HttpRequest httpRequest = new HttpRequest(msg);
                     Class<PrintController> printControllerClass = PrintController.class;
                     Method invokeMethod = printControllerClass.getMethod(httpRequest.getMethod(), HttpRequest.class);
-                    PrintController printController = PrintController.getInstance();
+                    PrintController printController = new PrintController();
                     returnMsg = (String) invokeMethod.invoke(printController, httpRequest);
                 }
             }

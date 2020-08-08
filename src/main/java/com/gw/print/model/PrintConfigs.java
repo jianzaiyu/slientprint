@@ -54,16 +54,32 @@ public class PrintConfigs {
         return copies;
     }
 
-    public void setCopies(int copies) {
-        this.copies = copies;
+//    public void setCopies(int copies) {
+//        this.copies = copies;
+//    }
+
+    public void setCopies(String copies) {
+        if (StringUtils.isEmpty(copies)) {
+            this.copies = 1;
+        }else {
+            this.copies = Integer.parseInt(copies);
+        }
     }
 
     public boolean isDuplex() {
         return duplex;
     }
 
-    public void setDuplex(boolean duplex) {
-        this.duplex = duplex;
+//    public void setDuplex(boolean duplex) {
+//        this.duplex = duplex;
+//    }
+
+    public void setDuplex(String duplex) {
+        if (StringUtils.isEmpty(duplex)) {
+            this.duplex = false;
+        }else {
+            this.duplex = Boolean.parseBoolean(duplex);
+        }
     }
 
     public String getPaperSize() {

@@ -34,6 +34,11 @@
             <artifactId>jfoenix</artifactId>
             <version>8.0.8</version>
         </dependency>
+        <dependency>
+            <groupId>fr.w3blog</groupId>
+            <artifactId>zebra-zpl</artifactId>
+            <version>0.0.3</version>
+        </dependency>
     </dependencies>
 
     <build>
