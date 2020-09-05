@@ -3,10 +3,7 @@ package com.gw.print.model;
 
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.multipart.*;
-import io.netty.util.CharsetUtil;
 import org.apache.commons.lang.StringUtils;
-
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 

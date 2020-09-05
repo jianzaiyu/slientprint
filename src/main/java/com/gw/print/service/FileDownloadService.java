@@ -1,12 +1,14 @@
 package com.gw.print.service;
 
 import com.gw.print.support.ConsolePrinter;
+import com.gw.print.support.URLEncoderHZ;
 import org.apache.commons.lang.StringUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -42,6 +44,7 @@ public class FileDownloadService {
                     queue.add(download(url));
                 } catch (Exception e) {
                     // 下载失败
+                    ConsolePrinter.err("下载错误信息3:",e);
                     downFlag.set(false);
                 } finally {
                     count.countDown();
@@ -66,7 +69,7 @@ public class FileDownloadService {
         InputStream i = null;
         try {
             url = StringUtils.trim(url);
-            URL u = new URL(url);
+            URL u = new URL(URLEncoderHZ.encode(url,"utf-8"));
             i = u.openStream();
             byte[] b = new byte[1024 * 1024];
             int len;
@@ -76,6 +79,7 @@ public class FileDownloadService {
             }
             baos.flush();
         } catch (IOException e) {
+            ConsolePrinter.err("下载错误信息1:",e);
             e.printStackTrace();
         } finally {
             try {
@@ -86,6 +90,7 @@ public class FileDownloadService {
                     i.close();
                 }
             } catch (IOException e) {
+                ConsolePrinter.err("下载错误信息2:",e);
                 e.printStackTrace();
             }
         }
