@@ -24,7 +24,7 @@ public class BasePrintService {
                 printers.put(printService.getName(), printService);
             }
         }
-        return JSONArray.fromObject(printers).toString();
+        return JSONArray.fromObject(printers.keySet()).toString();
     }
 
     public PrintService getPrinterByName(String printerName) {
