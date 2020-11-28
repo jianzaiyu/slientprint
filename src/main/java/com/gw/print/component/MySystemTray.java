@@ -106,30 +106,30 @@ public class MySystemTray {
 //        };
         //鼠标行为事件: 单机显示stage
         mouseListener = new MouseAdapter() {
-            private long start;
+//            private long start;
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-                start = System.currentTimeMillis();
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                long end = System.currentTimeMillis();
-                long result  =  end -start;
-                if(result >= 3000 && result <= 5000){
-                    showStage(stage);
-                }
-                if(result >= 10000){
-                    System.exit(0);
-                }
-            }
 //            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if (e.getClickCount() == 5) {
+//            public void mousePressed(MouseEvent e) {
+//                start = System.currentTimeMillis();
+//            }
+
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//                long end = System.currentTimeMillis();
+//                long result  =  end -start;
+//                if(result >= 3000 && result <= 5000){
 //                    showStage(stage);
 //                }
+//                if(result >= 10000){
+//                    System.exit(0);
+//                }
 //            }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+//                if (e.getClickCount() == 5) {
+                    showStage(stage);
+//                }
+            }
         };
         //给菜单项添加事件
 //        showItem.addActionListener(showListener);

@@ -14,7 +14,7 @@ public class ZebraPrintService {
             throw new Exception("zpl code could't be empty");
         }
         if(!StringUtils.isEmpty(zebraConfigs.getZebraPrinterName())){
-            ZebraUtils.printZpl(zebraConfigs.getZebraCode(),zebraConfigs.getZebraPrinterName());
+            ZebraUtils.printZpl(zebraConfigs.getZebraCode(),zebraConfigs.getZebraPrinterName().toLowerCase());
         }else {
             ZebraUtils.printZpl(zebraConfigs.getZebraCode(),zebraConfigs.getZebraPrinterIp(),Integer.parseInt(zebraConfigs.getZebraPrinterPort()));
         }

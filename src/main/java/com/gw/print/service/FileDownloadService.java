@@ -8,7 +8,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -69,6 +68,7 @@ public class FileDownloadService {
         InputStream i = null;
         try {
             url = StringUtils.trim(url);
+            //修复汉字路径无法正常下载
             URL u = new URL(URLEncoderHZ.encode(url,"utf-8"));
             i = u.openStream();
             byte[] b = new byte[1024 * 1024];

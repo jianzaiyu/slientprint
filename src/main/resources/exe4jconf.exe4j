@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exe4j version="7.0" transformSequenceNumber="3">
+  <directoryPresets config="/Users/ggs/IdeaProjects/slientprint/target" />
+  <application name="slientprint" distributionSourceDir="/Users/ggs/Downloads/setup" />
+  <executable name="slientprint" wrapperType="embed" iconSet="true" iconFile="/Users/ggs/IdeaProjects/slientprint/src/main/resources/SystemTray.ico" executableDir="." executableMode="gui" singleInstance="true" dpiAware="false" />
+  <java mainClass="com.gw.print.Main" vmParameters="-Dappdir=${EXE4J_EXEDIR}" preferredVM="client" minVersion="1.8" allowBetaVM="true">
+    <searchSequence>
+      <directory location="./jre" />
+    </searchSequence>
+    <classPath>
+      <archive location="/Users/ggs/IdeaProjects/slientprint/target/slientprint-1.0-SNAPSHOT.jar" failOnError="false" />
+    </classPath>
+  </java>
+</exe4j>

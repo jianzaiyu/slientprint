@@ -36,6 +36,8 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         heads.add(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
         // 允许跨域访问
         heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
+        heads.add(HttpHeaderNames.ACCESS_CONTROL_REQUEST_METHOD, "GET, POST, PUT,DELETE");
+        heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_HEADERS, "*");
         heads.add(HttpHeaderNames.ACCESS_CONTROL_ALLOW_CREDENTIALS, true);
         heads.add(HttpHeaderNames.ACCESS_CONTROL_MAX_AGE,6);
         // 响应给客户端
@@ -93,7 +95,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
             responseStatus = HttpResponseStatus.INTERNAL_SERVER_ERROR;
         }
         return new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, responseStatus,
-                Unpooled.wrappedBuffer(returnMsg.getBytes()));
+                Unpooled.wrappedBuffer(returnMsg==null?"".getBytes():returnMsg.getBytes()));
     }
 
 //    private boolean isLocal(ChannelHandlerContext ctx, FullHttpRequest httpRequest) {

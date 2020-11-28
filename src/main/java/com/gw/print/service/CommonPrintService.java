@@ -3,6 +3,7 @@ package com.gw.print.service;
 import com.gw.print.model.PrintConfigs;
 import com.gw.print.support.ConsolePrinter;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
@@ -27,7 +28,7 @@ public class CommonPrintService {
 
     private FileDownloadService fileDownloadService = new FileDownloadService();
 
-    public String printPdf(PrintConfigs userConfigs) throws IOException, PrinterException, InterruptedException {
+    public synchronized String printPdf(PrintConfigs userConfigs) throws IOException, PrinterException, InterruptedException {
         PrintRequestAttributeSet attr = new HashPrintRequestAttributeSet();
         //份数
         attr.add(new Copies(userConfigs.getCopies()));
@@ -49,7 +50,7 @@ public class CommonPrintService {
             attr.add(Sides.DUPLEX);
         }
         //打印机名称
-        String printerName = StringUtils.isEmpty(userConfigs.getPrinter())?basePrintService.getDefaultPrinter():userConfigs.getPrinter();
+        String printerName = StringUtils.isEmpty(userConfigs.getPrinter()) ? basePrintService.getDefaultPrinter() : userConfigs.getPrinter();
         PrintService printer = basePrintService.getPrinterByName(printerName);
         //文件下载链接
         List<String> urlList = userConfigs.getUrls();
@@ -70,19 +71,19 @@ public class CommonPrintService {
         PrinterJob printerJob = PrinterJob.getPrinterJob();
         printerJob.setPrintService(printer);
 
-        if (files != null && !files.isEmpty()) {
+        if (MapUtils.isNotEmpty(files)) {
             for (Map.Entry<String, byte[]> entry : files.entrySet()) {
                 print(printerJob, entry.getValue(), attr);
             }
 
-        } else if(!CollectionUtils.isEmpty(urlList)){
+        } else if (!CollectionUtils.isEmpty(urlList)) {
             byte[] fileByte;
             documentsByte = fileDownloadService.downloadAllDocument(urlList);
             // 都下载结束，没问题，开始打印
             while ((fileByte = documentsByte.poll()) != null) {
                 print(printerJob, fileByte, attr);
             }
-        }else {
+        } else {
             ConsolePrinter.info("没有可打印的内容");
             throw new IOException("没有可打印的内容");
         }
@@ -92,7 +93,7 @@ public class CommonPrintService {
 
 
     private void print(PrinterJob printerJob, byte[] fileByte, PrintRequestAttributeSet attr) {
-        ConsolePrinter.info("文件长度: "+fileByte.length);
+        ConsolePrinter.info("文件长度: " + fileByte.length);
         try (PDDocument document = PDDocument.load(fileByte)) {
             printerJob.setPageable(new PDFPageable(document));
             printerJob.print(attr);

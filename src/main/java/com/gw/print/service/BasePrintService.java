@@ -34,8 +34,8 @@ public class BasePrintService {
         for (PrintService printService : printServices) {
             // 能提供服务的打印机
             if (printService.getAttribute(PrinterIsAcceptingJobs.class) != PrinterIsAcceptingJobs.NOT_ACCEPTING_JOBS) {
-                if(!StringUtils.isEmpty(printerName) && printerName.equals(printService.getName())){
-                    result =  printService;
+                if (!StringUtils.isEmpty(printerName) && printerName.equals(printService.getName())) {
+                    result = printService;
                 }
             }
         }
@@ -44,11 +44,8 @@ public class BasePrintService {
 
     public String getDefaultPrinter() {
         PrintService defaultService = PrintServiceLookup.lookupDefaultPrintService();
-        return defaultService.getName();
+        return defaultService == null ? null : defaultService.getName();
     }
-
-
-
 
 
 }
