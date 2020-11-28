@@ -1,5 +1,6 @@
 package com.gw.print.netty;
 
+import com.gw.print.component.SingletonComponent;
 import com.gw.print.constants.ServerConstants;
 import com.gw.print.controller.PrintController;
 import com.gw.print.model.HttpRequest;
@@ -84,8 +85,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
                     HttpRequest httpRequest = new HttpRequest(msg);
                     Class<PrintController> printControllerClass = PrintController.class;
                     Method invokeMethod = printControllerClass.getMethod(httpRequest.getMethod(), HttpRequest.class);
-                    PrintController printController = new PrintController();
-                    returnMsg = (String) invokeMethod.invoke(printController, httpRequest);
+                    returnMsg = (String) invokeMethod.invoke(SingletonComponent.printController, httpRequest);
                 }
             }
         } catch (NoSuchMethodException e) {

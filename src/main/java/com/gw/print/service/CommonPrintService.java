@@ -1,5 +1,6 @@
 package com.gw.print.service;
 
+import com.gw.print.component.SingletonComponent;
 import com.gw.print.model.PrintConfigs;
 import com.gw.print.support.ConsolePrinter;
 import org.apache.commons.collections.CollectionUtils;
@@ -24,9 +25,9 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class CommonPrintService {
 
-    private BasePrintService basePrintService = new BasePrintService();
+    private BasePrintService basePrintService = SingletonComponent.basePrintService;
 
-    private FileDownloadService fileDownloadService = new FileDownloadService();
+    private FileDownloadService fileDownloadService = SingletonComponent.fileDownloadService;
 
     public synchronized String printPdf(PrintConfigs userConfigs) throws IOException, PrinterException, InterruptedException {
         PrintRequestAttributeSet attr = new HashPrintRequestAttributeSet();
