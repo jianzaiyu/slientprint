@@ -85,7 +85,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
                     HttpRequest httpRequest = new HttpRequest(msg);
                     Class<PrintController> printControllerClass = PrintController.class;
                     Method invokeMethod = printControllerClass.getMethod(httpRequest.getMethod(), HttpRequest.class);
-                    returnMsg = (String) invokeMethod.invoke(SingletonComponent.printController, httpRequest);
+                    returnMsg = (String) invokeMethod.invoke(SingletonComponent.printController(), httpRequest);
                 }
             }
         } catch (NoSuchMethodException e) {

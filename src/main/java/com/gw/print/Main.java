@@ -11,8 +11,16 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+    public static void main(String[] args) {
+        //交互界面启动
+        launch(args);
+        //后端服务启动
+        new Thread(HttpServer::start).start();
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
         primaryStage.setTitle("打印伺服器");
         primaryStage.setScene(new Scene(root, 600, 400));
@@ -34,17 +42,7 @@ public class Main extends Application {
 //                }
 //            }).setTitle("提示").setMessage("确定要退出吗?").create();
         });
-
         MySystemTray.getInstance().listen(primaryStage);
-
         ConsolePrinter.init(root);
-
-        new Thread(HttpServer::start).start();
-    }
-
-
-
-    public static void main(String[] args) throws Exception {
-        launch(args);
     }
 }

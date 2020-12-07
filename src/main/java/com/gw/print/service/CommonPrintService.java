@@ -7,7 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.printing.PDFPageable;
+import org.apache.pdfbox.printing.PDFPrintable;
 
 import javax.print.PrintService;
 import javax.print.attribute.HashPrintRequestAttributeSet;
@@ -25,9 +25,9 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class CommonPrintService {
 
-    private BasePrintService basePrintService = SingletonComponent.basePrintService;
+    private BasePrintService basePrintService = SingletonComponent.basePrintService();
 
-    private FileDownloadService fileDownloadService = SingletonComponent.fileDownloadService;
+    private FileDownloadService fileDownloadService = SingletonComponent.fileDownloadService();
 
     public synchronized String printPdf(PrintConfigs userConfigs) throws IOException, PrinterException, InterruptedException {
         PrintRequestAttributeSet attr = new HashPrintRequestAttributeSet();
@@ -96,7 +96,8 @@ public class CommonPrintService {
     private void print(PrinterJob printerJob, byte[] fileByte, PrintRequestAttributeSet attr) {
         ConsolePrinter.info("文件长度: " + fileByte.length);
         try (PDDocument document = PDDocument.load(fileByte)) {
-            printerJob.setPageable(new PDFPageable(document));
+            PDFPrintable pdfPrintable = new PDFPrintable(document);
+            printerJob.setPrintable(pdfPrintable);
             printerJob.print(attr);
         } catch (Exception e) {
             ConsolePrinter.info("打印错误: " + e.getMessage());

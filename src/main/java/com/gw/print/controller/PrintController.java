@@ -14,9 +14,9 @@ import com.gw.print.support.ConsolePrinter;
  * 控制Controller
  */
 public class PrintController {
-    private BasePrintService basePrintService = SingletonComponent.basePrintService;
-    private CommonPrintService commonPrintService = SingletonComponent.commonPrintService;
-    private ZebraPrintService zebraPrintService = SingletonComponent.zebraPrintService;
+    private BasePrintService basePrintService = SingletonComponent.basePrintService();
+    private CommonPrintService commonPrintService = SingletonComponent.commonPrintService();
+    private ZebraPrintService zebraPrintService = SingletonComponent.zebraPrintService();
 
     public String getPrinters(HttpRequest request) {
         return basePrintService.getPrinters();
