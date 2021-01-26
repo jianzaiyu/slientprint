@@ -56,8 +56,7 @@ public class HttpServer {
                 });
         try {
             long end = System.currentTimeMillis();
-            ConsolePrinter.info("打印服务启动，耗时:" + (end - start) + "ms，版本 1.6");
-            ConsolePrinter.info("");
+            ConsolePrinter.info("打印服务启动，耗时:" + (end - start) + "ms，版本 1.6",2);
             // 异步地绑定服务器;调用sync方法阻塞等待直到绑定完成
             ChannelFuture f = b.bind().sync();
             // 获取Channel的CloseFuture，并且阻塞当前线程直到它完成

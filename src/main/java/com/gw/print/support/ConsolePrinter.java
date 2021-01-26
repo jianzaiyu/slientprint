@@ -17,8 +17,14 @@ public class ConsolePrinter {
     }
 
     public static void info(String log) {
+        info(log,1);
+    }
+
+    public static void info(String log,int blank) {
         console.appendText(log);
-        console.appendText("\n");
+        for(int i=0;i<blank;i++){
+            console.appendText("\n");
+        }
     }
 
     public static void err(String message, Exception e) {

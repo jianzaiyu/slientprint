@@ -89,15 +89,14 @@ public class CommonPrintService {
         }
         //所有直传文件
         Map<String, byte[]> files = userConfigs.getMultipartFiles();
-        if(MapUtils.isNotEmpty(files)){
-            for (Map.Entry entry : files.entrySet()) {
-                byte[] bytes = (byte[]) entry.getValue();
+        if (MapUtils.isNotEmpty(files)) {
+            for (Map.Entry<String, byte[]> entry : files.entrySet()) {
+                byte[] bytes = entry.getValue();
 
                 print(userConfigs, attr, buildBook(new ByteArrayInputStream(bytes), userConfigs));
 
             }
         }
-
 
 
         return "{\"result\":\"success\"}";
@@ -107,7 +106,7 @@ public class CommonPrintService {
     private Book buildBook(InputStream inputStream, PrintConfigs configs) throws IOException {
         long start = System.currentTimeMillis();
         PDDocument document = PDDocument.load(inputStream);
-        configs.setCostTime(System.currentTimeMillis()-start);
+        configs.setCostTime(System.currentTimeMillis() - start);
         PDFPrintable pdfPrintable = new PDFPrintable(document, configs.getScalingParam());
         Paper paper = new Paper();
         double width = PaperSupport.getPaperWidth(configs.getPaperSize());
@@ -131,7 +130,7 @@ public class CommonPrintService {
         ConsolePrinter.info("打印方向: " + configs.getOrientation());
         ConsolePrinter.info("双面打印: " + configs.isDuplex());
         ConsolePrinter.info("文件长度: " + configs.getByteLength());
-        ConsolePrinter.info("下载时长: " + configs.getCostTime()+"ms");
+        ConsolePrinter.info("下载时长: " + configs.getCostTime() + "ms");
         PrintService printer = basePrintService.getPrinterByName(configs.getPrinter());
         if (printer == null) {
             throw new IOException("没有对应的打印服务");
@@ -143,9 +142,6 @@ public class CommonPrintService {
         printerJob.setPrintService(printer);
         printerJob.setPageable(book);
         printerJob.print(attr);
-        ConsolePrinter.info("打印成功");
-        ConsolePrinter.info("");
-        ConsolePrinter.info("");
-        ConsolePrinter.info("");
+        ConsolePrinter.info("打印成功",3);
     }
 }

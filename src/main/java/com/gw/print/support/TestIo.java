@@ -43,13 +43,13 @@ public class TestIo {
         System.out.println("info:"+url+" download success");
     }
 
-    public static void main(String[] args) throws IOException {
-        TestIo testIo = new TestIo();
-        for (int i = 0; i < 10; i++) {
-            testIo.testIO("http://2d13c9a9a79bdc47.test.paas.gwm.cn/api/v1/public/user/rzit/bucket/instructtemp/file/焊装车间_机舱线_LGWEF6A57KH911150_44_A4.pdf?key=15fae4d11f7a1a1c"
-                    ,System.currentTimeMillis()+".pdf","C:\\Users\\GGs\\Desktop\\pdftest");
-            testIo.testIO("http://2d13c9a9a79bdc47.test.paas.gwm.cn/api/v1/public/user/rzit/bucket/instructtemp/file/焊装车间_机舱线_LGWEF6A57KH911150_43_A4.pdf?key=a182920d2aceeacb"
-                    ,System.currentTimeMillis()+".pdf","C:\\Users\\GGs\\Desktop\\pdftest");
-        }
-    }
+//    public static void main(String[] args) throws IOException {
+//        TestIo testIo = new TestIo();
+//        for (int i = 0; i < 10; i++) {
+//            testIo.testIO("http://2d13c9a9a79bdc47.test.paas.gwm.cn/api/v1/public/user/rzit/bucket/instructtemp/file/焊装车间_机舱线_LGWEF6A57KH911150_44_A4.pdf?key=15fae4d11f7a1a1c"
+//                    ,System.currentTimeMillis()+".pdf","C:\\Users\\GGs\\Desktop\\pdftest");
+//            testIo.testIO("http://2d13c9a9a79bdc47.test.paas.gwm.cn/api/v1/public/user/rzit/bucket/instructtemp/file/焊装车间_机舱线_LGWEF6A57KH911150_43_A4.pdf?key=a182920d2aceeacb"
+//                    ,System.currentTimeMillis()+".pdf","C:\\Users\\GGs\\Desktop\\pdftest");
+//        }
+//    }
 }

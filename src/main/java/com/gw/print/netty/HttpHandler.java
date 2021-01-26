@@ -74,7 +74,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
      * @return 应答信息
      * @throws UnsupportedEncodingException
      */
-    private DefaultFullHttpResponse executeRequest(ChannelHandlerContext ctx, FullHttpRequest msg) throws UnsupportedEncodingException {
+    private DefaultFullHttpResponse executeRequest(ChannelHandlerContext ctx, FullHttpRequest msg) {
         HttpResponseStatus responseStatus = HttpResponseStatus.OK;
         String returnMsg = "";
         try {
