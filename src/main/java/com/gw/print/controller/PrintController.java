@@ -33,6 +33,8 @@ public class PrintController {
             config.setDuplex(request.getParameter().get("duplex"));
             config.setPrinter(request.getParameter().get("printer"));
             config.setPaperSize(request.getParameter().get("paperSize"));
+            config.setOrientation(request.getParameter().get("orientation"));
+            config.setScaling(request.getParameter().get("scaling"));
             config.setUrls(request.getParameter().get("url"));
             config.setMultipartFiles(request.getMultiPartFiles());
             return commonPrintService.printPdf(config);

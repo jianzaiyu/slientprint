@@ -51,6 +51,5 @@ public class TestIo {
             testIo.testIO("http://2d13c9a9a79bdc47.test.paas.gwm.cn/api/v1/public/user/rzit/bucket/instructtemp/file/焊装车间_机舱线_LGWEF6A57KH911150_43_A4.pdf?key=a182920d2aceeacb"
                     ,System.currentTimeMillis()+".pdf","C:\\Users\\GGs\\Desktop\\pdftest");
         }
-
     }
 }
