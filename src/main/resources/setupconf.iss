@@ -8,7 +8,7 @@ begin
   if CurStep = ssInstall then
   begin
      // 检查××进程是否在运行，是则关闭进程
-     appWnd := FindWindowByWindowName('浏览器打印插件');
+     appWnd := FindWindowByWindowName('slientprint');
      if (appWnd <> 0) then
      begin
         PostMessage(appWnd, 18, 0, 0);       // quit
@@ -21,7 +21,7 @@ procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var appWnd: HWND;
 begin
    // 检查**进程是否在运行，是则关闭进程
-   appWnd := FindWindowByWindowName('浏览器打印插件');
+   appWnd := FindWindowByWindowName('slientprint');
    if (appWnd <> 0) then
    begin
       PostMessage(appWnd, 18, 0, 0);       // quit
@@ -33,17 +33,18 @@ end;
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{94B358AC-5DFF-4665-B765-1A5EF63C6334}
 AppName=slientprint
-AppVersion=1.5
+AppVersion=1.6
 ;AppVerName=slientprint 1.5
 DefaultDirName={autopf}\slientprint
 DefaultGroupName=slientprint
 ; The [Icons] "quicklaunchicon" entry uses {userappdata} but its [Tasks] entry has a proper IsAdminInstallMode Check.
 UsedUserAreasWarning=no
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
-;PrivilegesRequired=lowest
+; PrivilegesRequired=lowest
+PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=\\Mac\AllFiles\Users\ggs\Downloads\setup
-OutputBaseFilename=打印插件安装包
-SetupIconFile=\\Mac\AllFiles\Users\ggs\IdeaProjects\slientprint\src\main\resources\SystemTray.ico
+OutputBaseFilename=setup
+SetupIconFile=\\Mac\AllFiles\Users\ggs\IdeaProjects\slientprint\src\main\resources\print.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

@@ -66,6 +66,7 @@
                     <include>**/*.json</include>
                     <include>**/*.jks</include>
                     <include>**/*.cert</include>
+                    <include>**/*.ico</include>
                 </includes>
             </resource>
         </resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exe4j version="7.0" transformSequenceNumber="3">
-  <directoryPresets config="/Users/ggs/IdeaProjects/slientprint/target" />
+  <directoryPresets config="/Users/ggs/IdeaProjects/slientprint/src/main/resources" />
   <application name="slientprint" distributionSourceDir="/Users/ggs/Downloads/setup" />
-  <executable name="slientprint" wrapperType="embed" iconSet="true" iconFile="/Users/ggs/IdeaProjects/slientprint/src/main/resources/SystemTray.ico" executableDir="." executableMode="gui" singleInstance="true" dpiAware="false" />
-  <java mainClass="com.gw.print.Main" vmParameters="-Dappdir=${EXE4J_EXEDIR}" preferredVM="client" minVersion="1.8" allowBetaVM="true">
+  <executable name="slientprint" wrapperType="embed" iconSet="true" iconFile="/Users/ggs/IdeaProjects/slientprint/src/main/resources/print.ico" executableDir="." executableMode="gui" singleInstance="true" dpiAware="false" />
+  <java mainClass="com.gw.print.Main" vmParameters="-Dappdir=${EXE4J_EXEDIR}" preferredVM="server" minVersion="1.8" allowBetaVM="true">
     <searchSequence>
       <directory location="./jre" />
     </searchSequence>

@@ -22,7 +22,7 @@ public class PaperSupport {
                 return Paper.A3;
             case 5:
                 return Paper.A5;
-            case 40:
+            case 39:
                 return Paper.NA_LETTER;
             case 0:
                 return Paper.A0;

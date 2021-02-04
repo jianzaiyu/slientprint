@@ -41,6 +41,7 @@ public class PrintController {
         } catch (Exception e) {
             e.printStackTrace();
             ConsolePrinter.info(e.getMessage());
+            ConsolePrinter.info(e.toString());
         }
         return "{\"result\":\"failure\"}";
     }

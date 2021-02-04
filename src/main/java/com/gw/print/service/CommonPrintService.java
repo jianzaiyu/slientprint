@@ -5,6 +5,7 @@ import com.gw.print.model.PrintConfigs;
 import com.gw.print.support.ConsolePrinter;
 import com.gw.print.support.MediaSizeNameSupport;
 import com.gw.print.support.PaperSupport;
+import com.gw.print.support.URLEncoderHZ;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
@@ -20,7 +21,10 @@ import java.awt.print.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -81,11 +85,15 @@ public class CommonPrintService {
 
         //文件下载链接
         List<String> urlList = userConfigs.getUrls();
-        for (String urlPath : urlList) {
-            URL url = new URL(urlPath);
-            InputStream inputStream = url.openConnection().getInputStream();
-            userConfigs.setByteLength(inputStream.available());
-            print(userConfigs, attr, buildBook(inputStream, userConfigs));
+        if (CollectionUtils.isNotEmpty(urlList)) {
+            for (String urlPath : urlList) {
+                URL url = new URL(new URI(urlPath).toASCIIString());
+                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                conn.setConnectTimeout(5*1000);
+                InputStream inputStream = conn.getInputStream();
+                userConfigs.setByteLength(inputStream.available());
+                print(userConfigs, attr, buildBook(inputStream, userConfigs));
+            }
         }
         //所有直传文件
         Map<String, byte[]> files = userConfigs.getMultipartFiles();
@@ -97,8 +105,6 @@ public class CommonPrintService {
 
             }
         }
-
-
         return "{\"result\":\"success\"}";
     }
 
@@ -115,9 +121,9 @@ public class CommonPrintService {
         paper.setImageableArea(0, 0, width, height);
         PageFormat pageFormat = new PageFormat();
         pageFormat.setPaper(paper);
+        pageFormat.setOrientation(configs.getOrientation() == 3 ? PageFormat.PORTRAIT : PageFormat.LANDSCAPE);
         Book book = new Book();
         book.append(pdfPrintable, pageFormat);
-
         return book;
     }
 
@@ -142,6 +148,6 @@ public class CommonPrintService {
         printerJob.setPrintService(printer);
         printerJob.setPageable(book);
         printerJob.print(attr);
-        ConsolePrinter.info("打印成功",3);
+        ConsolePrinter.info("打印成功", 3);
     }
 }
