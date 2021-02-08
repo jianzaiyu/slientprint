@@ -1,10 +1,7 @@
 package com.gw.print.controller;
 
 
-import com.gw.print.component.SingletonComponent;
-import com.gw.print.model.HttpRequest;
-import com.gw.print.model.PrintConfigs;
-import com.gw.print.model.ZebraConfigs;
+import com.gw.print.model.*;
 import com.gw.print.service.BasePrintService;
 import com.gw.print.service.CommonPrintService;
 import com.gw.print.service.ZebraPrintService;
@@ -13,10 +10,17 @@ import com.gw.print.support.ConsolePrinter;
 /**
  * 控制Controller
  */
-public class PrintController {
-    private BasePrintService basePrintService = SingletonComponent.basePrintService();
+public class     PrintController {
+
+  /*  private BasePrintService basePrintService = SingletonComponent.basePrintService();
     private CommonPrintService commonPrintService = SingletonComponent.commonPrintService();
-    private ZebraPrintService zebraPrintService = SingletonComponent.zebraPrintService();
+    private ZebraPrintService zebraPrintService = SingletonComponent.zebraPrintService();*/
+    @Autowired("basePrintService")
+    private BasePrintService basePrintService;
+    @Autowired("commonPrintService")
+    private CommonPrintService commonPrintService;
+    @Autowired("zebraPrintService")
+    private ZebraPrintService zebraPrintService;
 
     public String getPrinters(HttpRequest request) {
         return basePrintService.getPrinters();

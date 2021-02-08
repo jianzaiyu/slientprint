@@ -1,5 +1,6 @@
 package com.gw.print.service;
 
+import com.gw.print.model.Bean;
 import com.gw.print.model.ZebraConfigs;
 import fr.w3blog.zpl.utils.ZebraUtils;
 import org.apache.commons.lang.StringUtils;
@@ -7,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * Created by ggs.
  */
+@Bean("zebraPrintService")
 public class ZebraPrintService {
 
     public String printZebra(ZebraConfigs zebraConfigs) throws Exception {

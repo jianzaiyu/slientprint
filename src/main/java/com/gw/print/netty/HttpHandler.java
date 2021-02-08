@@ -93,6 +93,8 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
             responseStatus = HttpResponseStatus.INTERNAL_SERVER_ERROR;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, responseStatus,
                 Unpooled.wrappedBuffer(returnMsg==null?"".getBytes():returnMsg.getBytes()));

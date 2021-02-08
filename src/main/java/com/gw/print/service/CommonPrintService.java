@@ -1,11 +1,11 @@
 package com.gw.print.service;
 
 import com.gw.print.component.SingletonComponent;
+import com.gw.print.model.Bean;
 import com.gw.print.model.PrintConfigs;
 import com.gw.print.support.ConsolePrinter;
 import com.gw.print.support.MediaSizeNameSupport;
 import com.gw.print.support.PaperSupport;
-import com.gw.print.support.URLEncoderHZ;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
@@ -24,17 +24,18 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by ggs.
  */
+@Bean("commonPrintService")
 public class CommonPrintService {
 
     private BasePrintService basePrintService = SingletonComponent.basePrintService();
-
+   // @Autowired("basePrintService")
+    //private BasePrintService basePrintService;
     public String printPdf(PrintConfigs userConfigs) throws Exception {
         PrintRequestAttributeSet attr = new HashPrintRequestAttributeSet();
         //份数

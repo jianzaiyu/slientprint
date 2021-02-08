@@ -1,5 +1,6 @@
 package com.gw.print.service;
 
+import com.gw.print.model.Bean;
 import net.sf.json.JSONArray;
 import org.apache.commons.lang.StringUtils;
 
@@ -12,6 +13,7 @@ import java.util.*;
 /**
  * 打印服务service
  */
+@Bean("basePrintService")
 public class BasePrintService {
 
     public String getPrinters() {

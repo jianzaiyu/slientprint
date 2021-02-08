@@ -5,6 +5,7 @@ import com.gw.print.service.BasePrintService;
 import com.gw.print.service.CommonPrintService;
 import com.gw.print.service.FileDownloadService;
 import com.gw.print.service.ZebraPrintService;
+import com.gw.print.support.AnnotationUtil;
 
 /**
  * Created by ggs.
@@ -20,11 +21,12 @@ public class SingletonComponent {
 
     }
 
-    public static PrintController printController() {
+    public static PrintController printController() throws Exception {
         if (printController == null) {
             synchronized (SingletonComponent.class) {
                 if (printController == null) {
                     printController = new PrintController();
+                   AnnotationUtil.annotationIOC(printController);
                 }
             }
         }
